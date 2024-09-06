@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Movie App</string>
+
+    <string name="strRetry">Retry</string>
+    <string name="strFetchingDataFromServer">Fetching data from server</string>
+    <string name="strOriginalLanguage">Original Language</string>
+
+</resources>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Movie App</string>
+
+    <string name="strRetry">Retry</string>
+    <string name="strFetchingDataFromServer">Fetching data from server</string>
+    <string name="strOriginalLanguage">Original Language</string>
+    <string name="movies" translatable="false">Movies</string>
+    <string name="movieDetails" translatable="false">Movie Details</string>
+    <string name="movieDetailsError" translatable="false">Error please try again</string>
+</resources>

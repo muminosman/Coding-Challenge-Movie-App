@@ -1,5 +1,6 @@
 package com.mmj.movieapp.presentation.home
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -88,6 +89,7 @@ fun HomeScreen(
                 textAlign = TextAlign.Center
             )
             IconButton(onClick = {
+                navController.navigate(AppScreen.SearchScreen.route)
 
             }) {
                 Icon(
@@ -118,9 +120,10 @@ fun HomeScreen(
 
                     loadState.refresh is LoadState.Error -> {
                         val error = moviePagingItems.loadState.refresh as LoadState.Error
+                        Log.e("loadState.refresh", error.error.localizedMessage!!)
                         item {
                             ErrorMessage(modifier = Modifier.fillParentMaxSize(),
-                                message = error.error.localizedMessage!!,
+                                message = stringResource(id = R.string.movieDetailsError),
                                 onClickRetry = { retry() })
                         }
                     }
@@ -131,9 +134,10 @@ fun HomeScreen(
 
                     loadState.append is LoadState.Error -> {
                         val error = moviePagingItems.loadState.append as LoadState.Error
+                        Log.e("loadState.append", error.error.localizedMessage!!)
                         item {
                             ErrorMessage(modifier = Modifier,
-                                message = error.error.localizedMessage!!,
+                                message = stringResource(id = R.string.movieDetailsError),
                                 onClickRetry = { retry() })
                         }
                     }

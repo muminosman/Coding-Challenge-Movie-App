@@ -11,6 +11,7 @@ interface MovieRemoteDataSource {
     ): ResponseDto<List<MovieResponseDto>>
 
     suspend fun fetchMovieDetails(movieId: Int): MovieDetailsResponse
+    suspend fun getSearchMovies(query: String, pageNumber: Int): ResponseDto<List<MovieResponseDto>>
 
 
 }

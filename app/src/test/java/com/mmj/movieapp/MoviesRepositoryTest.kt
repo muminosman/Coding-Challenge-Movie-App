@@ -8,6 +8,7 @@ import com.mmj.movieapp.data.model.remote.dto.response.MovieResponseDto
 import com.mmj.movieapp.data.model.remote.mapper.mapFromListModel
 import com.mmj.movieapp.data.repository.MovieRepositoryImpl
 import com.mmj.movieapp.data.repository.paging.MoviePagingSource
+import com.mmj.movieapp.data.repository.paging.SearchMoviePagingSource
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.times
@@ -58,6 +59,30 @@ internal class MoviesRepositoryTest {
     }
 
     @Test
+    fun `get search movies list should return a paging data`() {
+        runBlocking {
+            val pagingSource = SearchMoviePagingSource(MovieRemoteDataSourceImpl(api), "test")
+
+            whenever(api.getSearchMovies("test", 1)) doReturn FakeMovies.getFakeMovieList()
+
+            val actual = pagingSource.load(
+                PagingSource.LoadParams.Refresh(
+                    key = null, loadSize = 1, placeholdersEnabled = false
+                )
+            ) as PagingSource.LoadResult.Page
+
+            val expected = PagingSource.LoadResult.Page(
+                data = FakeMovies.getFakeMovieList().results as List<MovieResponseDto>,
+                prevKey = null,
+                nextKey = 1
+            )
+            Assert.assertEquals(
+                actual.data, expected.data.mapFromListModel()
+            )
+        }
+    }
+
+    @Test
     fun `call getMovieDetails should return correct movie details`() {
         runBlocking {
             whenever(api.fetchMovieDetails(1)) doReturn FakeMovies.getFakeMovieDetails()
@@ -76,6 +101,16 @@ internal class MoviesRepositoryTest {
             api.getMovies(1)
 
             verify(api, times(1)).getMovies(1)
+        }
+    }
+
+
+    @Test
+    fun `call fetchSearchMovies should call it once`() {
+        runBlocking {
+            api.getSearchMovies("test", 1)
+
+            verify(api, times(1)).getSearchMovies("test", 1)
         }
     }
 

@@ -62,6 +62,16 @@ class RemoteDataSourceTest {
     }
 
     @Test
+    fun `should fetch Search Movies correctly given 200 response`() {
+        mockWebServer.enqueueResponse(moviesResponse200, 200)
+
+        runBlocking {
+            val actual = api.getSearchMovies("test", 1)
+            assertNotNull(actual)
+        }
+    }
+
+    @Test
     fun `should fetch Movie details correctly given 200 response`() {
         mockWebServer.enqueueResponse(movieResponse200, 200)
 
@@ -78,6 +88,17 @@ class RemoteDataSourceTest {
 
         runBlocking {
             val actual = api.getMovies(1)
+            assertEquals(actual.results?.get(0)?.originalTitle, "Black Panther: Wakanda Forever")
+        }
+    }
+
+
+    @Test
+    fun `should fetch Search Movies correctly given correct data`() {
+        mockWebServer.enqueueResponse(moviesResponse200, 200)
+
+        runBlocking {
+            val actual = api.getSearchMovies("test", 1)
             assertEquals(actual.results?.get(0)?.originalTitle, "Black Panther: Wakanda Forever")
         }
     }

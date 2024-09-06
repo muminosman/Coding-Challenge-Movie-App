@@ -10,5 +10,6 @@ interface MovieRepository {
     suspend fun getMovies(): Flow<PagingData<Movie>>
 
     fun getMovieDetails(movieId: Int): Flow<MovieDetails>
+    suspend fun getSearchMovies(query: String): Flow<PagingData<Movie>>
 
 }

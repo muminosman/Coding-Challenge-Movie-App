@@ -15,5 +15,10 @@ interface MovieApi {
     ): ResponseDto<List<MovieResponseDto>>
 
     @GET("movie/{movie_id}")
-    suspend fun fetchMovieDetails(@Path("movie_id") id: Int):  MovieDetailsResponse
+    suspend fun fetchMovieDetails(@Path("movie_id") id: Int): MovieDetailsResponse
+
+    @GET("search/movie")
+    suspend fun getSearchMovies(
+        @Query("query") query: String, @Query("page") pageNumber: Int
+    ): ResponseDto<List<MovieResponseDto>>
 }

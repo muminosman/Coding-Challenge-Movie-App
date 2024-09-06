@@ -6,5 +6,8 @@
     <string name="strOriginalLanguage">Original Language</string>
     <string name="movies" translatable="false">Movies</string>
     <string name="movieDetails" translatable="false">Movie Details</string>
-    <string name="movieDetailsError" translatable="false">Error please try again</string>
+    <string name="movieDetailsError" translatable="false">Oops! Something went wrong. Please check your connection and try again.</string>
+    <string name="search" translatable="false">Search</string>
+    <string name="searchAMovie" translatable="false">Search a movie</string>
+    <string name="searchNoResultsFound" translatable="false">No results found</string>
 </resources>

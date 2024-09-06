@@ -22,5 +22,11 @@ class MovieRemoteDataSourceImpl @Inject constructor(
 
     }
 
+    override suspend fun getSearchMovies(
+        query: String, pageNumber: Int
+    ): ResponseDto<List<MovieResponseDto>> {
+        return api.getSearchMovies(query = query, pageNumber = pageNumber)
+    }
+
 
 }

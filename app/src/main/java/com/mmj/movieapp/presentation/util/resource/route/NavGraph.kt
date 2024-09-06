@@ -7,6 +7,7 @@ import androidx.navigation.compose.rememberNavController
 import com.mmj.movieapp.presentation.details.DetailsScreen
 import com.mmj.movieapp.presentation.home.HomeScreen
 import com.mmj.movieapp.presentation.main.MainViewModel
+import com.mmj.movieapp.presentation.search.SearchScreen
 
 @Composable
 fun NavGraph(mainViewModel: MainViewModel) {
@@ -28,6 +29,13 @@ fun NavGraph(mainViewModel: MainViewModel) {
                 mainViewModel = mainViewModel,
                 navController = navController,
                 movieId = mainViewModel.selectedMovieId
+            )
+        }
+
+        composable(route = AppScreen.SearchScreen.route) {
+            SearchScreen(
+                mainViewModel = mainViewModel,
+                navController = navController
             )
         }
     }
